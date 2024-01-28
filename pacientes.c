@@ -18,7 +18,6 @@ struct Historia_clinica
     float frecuencia_cardiaca;
 };
 
-// Función para validar que la entrada sea 'M' o 'F'
 int validarSexo(char sexo) {
     return (sexo == 'M' || sexo == 'F');
 }
@@ -91,7 +90,7 @@ int main()
                         fflush(stdin);
                     } while (pacientes[total_pacientes].frecuencia_cardiaca <= 0);
 
-                    // Sección para escribir en el archivo
+                
                     char archivo[] = "Historia_clinica.txt";
                     FILE *historia;
 
@@ -105,11 +104,9 @@ int main()
                     fseek(historia, 0, SEEK_END);
                     if (ftell(historia) == 0)
                     {
-                        // Encabezado del archivo
                         fprintf(historia, "Nombre\tApellido\tEdad\tSexo\t\t\tDirección\t\t\t\tPeso (kg)\t\tAltura (metros)\t\tPresion\t\tFrecuencia cardiaca\t\tIMC\n");
                     }
 
-                    // Escribir datos del paciente en el archivo
                     fprintf(historia, "%s \t%s\t%d\t\t%c\t\t%s\t\t%.2f\t\t%.2f\t\t%.2f\t\t\t%.2f\t\t\t\t\t\t%.2f\n",
                             pacientes[total_pacientes].nombre, pacientes[total_pacientes].apellido, pacientes[total_pacientes].edad,
                             pacientes[total_pacientes].sexo, pacientes[total_pacientes].direccion, pacientes[total_pacientes].peso,
@@ -117,7 +114,6 @@ int main()
                             pacientes[total_pacientes].imc);
 
                     fclose(historia);
-                    // Fin de la sección para escribir en el archivo
 
                     total_pacientes++;
                 } else {
