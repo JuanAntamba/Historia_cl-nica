@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Definición del número máximo de pacientes
+// Definicion del numero maximo de pacientes
 #define MAX_PACIENTES 100
 
-// Estructura que representa la historia clínica de un paciente
+// Estructura que representa la historia clinica de un paciente
 struct Historia_clinica
 {
     char nombre[80];
@@ -24,29 +24,29 @@ int validarSexo(char sexo) {
     return (sexo == 'M' || sexo == 'F');
 }
 
-// Función principal del programa
+// Funcion principal del programa
 int main()
 {
-    // Declaración del arreglo de estructuras para almacenar la información de los pacientes
+    // Declaracion del arreglo de estructuras para almacenar la informacion de los pacientes
     struct Historia_clinica pacientes[MAX_PACIENTES];
     int total_pacientes = 0;
 
-    // Variable para la selección de opciones del menú
+    // Variable para la seleccion de opciones del menu
     int opcion;
 
     // Bucle principal del programa
     do
     {
-        // Menú principal
+        // Menu principal
         printf("1. Ingresar datos del paciente\n");
         printf("2. Ver datos de todos los pacientes\n");
         printf("3. Salir\n");
 
-        // Lectura de la opción seleccionada por el usuario
+        // Lectura de la opcion seleccionada por el usuario
         scanf("%d", &opcion);
         fflush(stdin);
 
-        // Evaluación de la opción seleccionada
+        // Evaluacion de la opcion seleccionada
         switch (opcion)
         {
             case 1:
@@ -56,76 +56,76 @@ int main()
                     printf("Ingrese el nombre del paciente: ");
                     fgets(pacientes[total_pacientes].nombre, sizeof(pacientes[total_pacientes].nombre), stdin);
                     
-                    // Eliminación del salto de línea al final del nombre
+                    // Eliminacion del salto de linea al final del nombre
                     pacientes[total_pacientes].nombre[strcspn(pacientes[total_pacientes].nombre, "\n")] = '\0';
 
                     // Captura del apellido del paciente
                     printf("Ingrese el apellido del paciente: ");
                     fgets(pacientes[total_pacientes].apellido, sizeof(pacientes[total_pacientes].apellido), stdin);
                     
-                    // Eliminación del salto de línea al final del apellido
+                    // Eliminacion del salto de linea al final del apellido
                     pacientes[total_pacientes].apellido[strcspn(pacientes[total_pacientes].apellido, "\n")] = '\0';
 
-                    // Captura de la dirección del paciente
-                    printf("Ingrese la dirección del paciente: ");
+                    // Captura de la direccion del paciente
+                    printf("Ingrese la direccion del paciente: ");
                     fgets(pacientes[total_pacientes].direccion, sizeof(pacientes[total_pacientes].direccion), stdin);
                     
-                    // Eliminación del salto de línea al final de la dirección
+                    // Eliminacion del salto de linea al final de la direccion
                     pacientes[total_pacientes].direccion[strcspn(pacientes[total_pacientes].direccion, "\n")] = '\0';
 
-                    // Captura de la edad del paciente con validación
+                    // Captura de la edad del paciente con validacion
                     do {
                         printf("Ingrese la edad del paciente: ");
                         scanf("%d", &pacientes[total_pacientes].edad);
                         fflush(stdin);
                     } while (pacientes[total_pacientes].edad <= 0);
 
-                    // Captura del sexo del paciente con validación
+                    // Captura del sexo del paciente con validacion
                     do {
                         printf("Ingrese el sexo del paciente (M/F): ");
                         scanf(" %c", &pacientes[total_pacientes].sexo);
                         fflush(stdin);
                     } while (!validarSexo(pacientes[total_pacientes].sexo));
 
-                    // Captura del peso del paciente con validación
+                    // Captura del peso del paciente con validacion
                     do {
                         printf("Ingrese el peso del paciente (kg): ");
                         scanf("%f", &pacientes[total_pacientes].peso);
                         fflush(stdin);
                     } while (pacientes[total_pacientes].peso <= 0);
 
-                    // Captura de la altura del paciente con validación
+                    // Captura de la altura del paciente con validacion
                     do {
                         printf("Ingrese la altura del paciente (metros): ");
                         scanf("%f", &pacientes[total_pacientes].altura);
                         fflush(stdin);
                     } while (pacientes[total_pacientes].altura <= 0);
 
-                    // Cálculo del índice de masa corporal  del paciente
+                    // Calculo del indice de masa corporal  del paciente
                     pacientes[total_pacientes].imc = pacientes[total_pacientes].peso / (pacientes[total_pacientes].altura * pacientes[total_pacientes].altura);
 
-                    // Captura de la presión del paciente con validación
+                    // Captura de la presion del paciente con validacion
                     do {
                         printf("Ingrese la presion del paciente: ");
                         scanf("%f", &pacientes[total_pacientes].presion);
                         fflush(stdin);
                     } while (pacientes[total_pacientes].presion <= 0);
 
-                    // Captura de la frecuencia cardiaca del paciente con validación
+                    // Captura de la frecuencia cardiaca del paciente con validacion
                     do {
                         printf("Ingrese la frecuencia cardiaca del paciente: ");
                         scanf("%f", &pacientes[total_pacientes].frecuencia_cardiaca);
                         fflush(stdin);
                     } while (pacientes[total_pacientes].frecuencia_cardiaca <= 0);
 
-                    // Sección para escribir en el archivo
+                    // Seccion para escribir en el archivo
                     char archivo[] = "Historia_clinica.txt";
                     FILE *historia;
 
                     // Apertura del archivo en modo "a" (agregar al final)
                     historia = fopen(archivo, "a");
                     
-                    // Verificación de errores al abrir o crear el archivo
+                    // Verificacion de errores al abrir o crear el archivo
                     if (historia == NULL)
                     {
                         printf("Error al abrir o crear el archivo\n");
@@ -136,7 +136,7 @@ int main()
                     fseek(historia, 0, SEEK_END);
                     if (ftell(historia) == 0)
                     {
-                        fprintf(historia, "Nombre\tApellido\tEdad\tSexo\t\t\tDirección\t\t\t\tPeso (kg)\t\tAltura (metros)\t\tPresion\t\tFrecuencia cardiaca\t\tIMC\n");
+                        fprintf(historia, "Nombre\tApellido\tEdad\tSexo\t\t\tDireccion\t\t\t\tPeso (kg)\t\tAltura (metros)\t\tPresion\t\tFrecuencia cardiaca\t\tIMC\n");
                     }
 
                     // Escritura de los datos del paciente en el archivo
@@ -152,8 +152,8 @@ int main()
                     // Incremento del contador de pacientes
                     total_pacientes++;
                 } else {
-                    // Mensaje de error cuando se alcanza el límite de pacientes
-                    printf("Se ha alcanzado el límite de pacientes. No se pueden ingresar más.\n");
+                    // Mensaje de error cuando se alcanza el limite de pacientes
+                    printf("Se ha alcanzado el limite de pacientes. No se pueden ingresar mas.\n");
                 }
                 break;
 
@@ -165,7 +165,7 @@ int main()
                     printf("Nombre: %s %s\n", pacientes[i].nombre, pacientes[i].apellido);
                     printf("Edad: %d\n", pacientes[i].edad);
                     printf("Sexo: %c\n", pacientes[i].sexo);
-                    printf("Dirección: %s\n", pacientes[i].direccion);
+                    printf("Direccion: %s\n", pacientes[i].direccion);
                     printf("Peso: %.2f kg\n", pacientes[i].peso);
                     printf("Altura: %.2f metros\n", pacientes[i].altura);
                     printf("Presion: %.2f\n", pacientes[i].presion);
@@ -188,5 +188,4 @@ int main()
 
     return 0;
 }
-
 
