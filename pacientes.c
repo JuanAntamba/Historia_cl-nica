@@ -21,7 +21,7 @@ struct Historia_clinica
 };
 
 int validarSexo(char sexo) {
-    return (sexo == 'M' || sexo == 'F');
+    return (sexo == 'M' || sexo == 'm' || sexo == 'F' || sexo == 'f');
 }
 
 // Funcion principal del programa
